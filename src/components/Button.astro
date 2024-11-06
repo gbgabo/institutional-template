@@ -1,0 +1,28 @@
+---
+export interface Props {
+  value: string;
+  href?: string;
+  class?: string;
+  variant?: "primary" | "secondary" | "dark";
+}
+
+const variants = {
+  primary:
+    "bg-blue-500 text-white hover:bg-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-500",
+  secondary:
+    "bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600",
+  dark: "bg-gray-900 text-white hover:bg-gray-700 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-900",
+};
+
+const { value, href, variant, class: className } = Astro.props;
+---
+
+<span
+  class:list={[
+    className,
+    "inline-block rounded-md px-4 py-2 font-medium",
+    variant ? variants[variant] : variants.primary,
+  ]}
+>
+  {href ? <a href={href}>{value}</a> : value}
+</span>

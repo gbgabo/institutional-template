@@ -1,50 +1,110 @@
 ---
+import { SITE_NAME } from "../consts";
+import { Icon } from "astro-icon/components";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="en" class="scroll-smooth focus:scroll-auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="px-4 lg:px-6 h-14 flex items-center">
+      <a class="flex items-center justify-center" href="#">
+        <Icon name="fa6-solid:scale-balanced" class="w-6 h-6" /><span
+          class="hidden md:inline ml-2 text-lg font-bold">{SITE_NAME}</span
+        >
+      </a>
+      <nav class="ml-auto flex gap-4 sm:gap-6">
+        <a
+          class="text-sm font-medium hover:underline underline-offset-4"
+          href="#services"
+        >
+          Serviços
+        </a>
+        <a
+          class="text-sm font-medium hover:underline underline-offset-4"
+          href="#about"
+        >
+          Sobre
+        </a>
+        <a
+          class="text-sm font-medium hover:underline underline-offset-4"
+          href="#media"
+        >
+          Mídia
+        </a>
+        <a
+          class="text-sm font-medium hover:underline underline-offset-4"
+          href="#contact"
+        >
+          Contato
+        </a>
+      </nav>
+    </header>
+    <slot />
+    <footer
+      class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t"
+    >
+      <p class="text-xs text-muted-foreground">
+        © 2024 {SITE_NAME}. Todos os direitos reservados.
+      </p>
+      <nav class="sm:ml-auto flex gap-4 sm:gap-6">
+        <a class="text-xs hover:underline underline-offset-4" href="#">
+          Termos de serviço
+        </a>
+        <a class="text-xs hover:underline underline-offset-4" href="#">
+          Privacidade
+        </a>
+      </nav>
+    </footer>
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  @layer base {
+    :root {
+      /* For rgb(255 115 179 / 1) */
+      --color-primary: 255 115 179;
+      --muted: 240 4.8% 95.9%;
+      --color-muted: hsl(var(--muted));
+    }
+  }
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px;
+    }
+  }
+  .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
 </style>
