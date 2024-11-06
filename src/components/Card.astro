@@ -2,16 +2,16 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-  title: string;
   icon?: string;
-  href: string;
+  href?: string;
 }
 
 const { href, icon } = Astro.props;
+const Element = href ? "a" : "div";
 ---
 
 <li class="link-card bg-slate-500">
-  <a href={href}>
+  <Element href={href}>
     <div class="mb-2">
       <slot name="badge" />
     </div>
@@ -61,5 +61,5 @@ const { href, icon } = Astro.props;
         color: rgb(var(--accent-light));
       }
     </style>
-  </a>
+  </Element>
 </li>
