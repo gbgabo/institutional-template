@@ -10,7 +10,7 @@ const { href, icon } = Astro.props;
 const Element = href ? "a" : "div";
 ---
 
-<li class="link-card bg-slate-500">
+<li class="link-card bg-slate-500 list-none p-4 rounded-xl text-white">
   <Element href={href}>
     <div class="mb-2">
       <slot name="badge" />
@@ -23,43 +23,5 @@ const Element = href ? "a" : "div";
       <slot name="body" />
     </div>
     <slot name="footer" />
-    <style>
-      .link-card {
-        list-style: none;
-        display: flex;
-        padding: 1px;
-        background-image: none;
-        background-size: 400%;
-        border-radius: 7px;
-        background-position: 100%;
-        transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-      }
-      .link-card > a {
-        width: 100%;
-        text-decoration: none;
-        line-height: 1.4;
-        padding: calc(1.5rem - 1px);
-        border-radius: 8px;
-        color: white;
-        opacity: 0.8;
-      }
-      h2 {
-        margin: 0;
-        font-size: 1.25rem;
-        transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      p {
-        margin-top: 0.5rem;
-        margin-bottom: 0;
-      }
-      .link-card:is(:hover, :focus-within) {
-        background-position: 0;
-        background-image: var(--accent-gradient);
-      }
-      .link-card:is(:hover, :focus-within) h2 {
-        color: rgb(var(--accent-light));
-      }
-    </style>
   </Element>
 </li>
